@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.text.Text?>
+<BorderPane
+        fx:controller="edu.diegod.Controllers.MainController"
+        xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <HBox>
+            <Button text="Abrir..."
+                    onAction="#buttonOpenAction"/>
+            <Button fx:id="buttonNew"
+                    text="Nuevo" />
+            <Text fx:id="textDocumentName"/>
+        </HBox>
+    </top>
+    <center>
+        <TextArea fx:id="textAreaEditor"/>
+    </center>
+</BorderPane>
