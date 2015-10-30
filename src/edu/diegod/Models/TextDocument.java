@@ -14,22 +14,24 @@ public class TextDocument {
     public TextDocument() {
     }
 
-    public TextDocument(String fileName, File file) {
-        this.fileName = fileName;
-        this.file = file;
-    }
-
-    public void saveFileAs(String pathname){
+    public void saveFileAs(String pathname) {
         FileWriter fileWriter = null;
-        try{
+        try {
             fileWriter = new FileWriter(pathname);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "El fichero no puede ser guardado");
+        }
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(this.contents);
+            bufferedWriter.close();
             JOptionPane.showMessageDialog(null, "El fichero ha sido guardado");
-        } catch (IOException e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "El fichero no puede ser guardado");
         }
     }
 
-    public void saveFile(){
+    public void saveFile() {
         String pathname = file.getPath();
         saveFileAs(pathname);
     }
@@ -39,12 +41,12 @@ public class TextDocument {
         fileChooser.showOpenDialog(null);
         this.file = fileChooser.getSelectedFile();
         this.fileName = file.getName();
-        try{
+        try {
             FileReader fileReader = new FileReader(this.file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String fileText = "";
             String fileLine = "";
-            while (((fileLine = bufferedReader.readLine())!= null)){
+            while (((fileLine = bufferedReader.readLine()) != null)) {
                 fileText += fileLine + "\n";
             }
             this.contents = fileText;
@@ -54,10 +56,11 @@ public class TextDocument {
     }
 
     public void renameFile(String newName) {
-        String newFilePathName = file.getParent() + "\\" + newName + ".txt";
+        String newFilePathName = file.getParent() + "/" + newName;
         File newFile = new File(newFilePathName);
         if (file.renameTo(newFile)) {
             JOptionPane.showMessageDialog(null, "El fichero ha sido renombrado");
+            this.file = newFile;
             this.fileName = newFile.getName();
         } else
             JOptionPane.showMessageDialog(null, "El fichero no puede ser renombrado");

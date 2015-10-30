@@ -1,0 +1,25 @@
+#main-pane{
+  -fx-background-color: #F1F1F1;
+}
+
+#main-HBox{
+  -fx-padding: 8px;
+  -fx-background-color: #3F51B5;
+  -fx-border-color: #B6B6B6;
+  -fx-border-width: 0 0 3px 0;
+}
+
+#text-area-editor{
+  -fx-padding: 3px;
+  -fx-border-color: black;
+  -fx-border-width: 1px 1px 1px 1px;
+}
+
+.fancy-button{
+  -fx-background-color: #607D8B;
+  -fx-text-fill: white;
+}
+
+.file-name-text{
+  -fx-text-fill: white;
+}
